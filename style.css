@@ -345,9 +345,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 /* SECTION 5.3: Fan Stage */
 .fan-stage {
   position: relative;
-  width: 100%; max-width: 900px;
+  width: 100%; max-width: 1100px;
   margin: 0 auto;
-  height: 520px;
+  height: 400px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -357,8 +357,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 /* SECTION 5.4: Fan Card Base */
 .fan-card {
   position: absolute;
-  width: 280px;
-  height: 400px;
+  width: 420px;
+  height: 280px;
   bottom: 0;
   transform-origin: center bottom;
   transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
@@ -410,6 +410,12 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
+}
+
+/* SECTION 5.7.1: Portrait video thumbnail — show full frame, letterboxed */
+.fan-card[data-video-type="short"] .fan-thumb {
+  object-fit: contain;
+  background: #000;
 }
 
 /* SECTION 5.8: Overlay — only shows on active */
@@ -811,8 +817,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 @media (max-width: 1024px) {
   :root { --pad-x: 3rem; --pad-section: 90px; }
   .why-grid { grid-template-columns: repeat(2, 1fr); }
-  .fan-stage { height: 460px; }
-  .fan-card  { width: 240px; height: 340px; }
+  .fan-stage { height: 320px; }
+  .fan-card  { width: 340px; height: 226px; }
 }
 
 /* SECTION 12.2: Mobile */
@@ -837,8 +843,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   }
   .pillar:last-child { border-bottom: none; }
 
-  .fan-stage { height: 380px; }
-  .fan-card  { width: 200px; height: 290px; }
+  .fan-stage { height: 240px; }
+  .fan-card  { width: 240px; height: 160px; }
 
   .why-grid { grid-template-columns: 1fr; }
 
