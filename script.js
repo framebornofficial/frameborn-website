@@ -50,14 +50,14 @@ let   activeIdx = Math.floor(TOTAL / 2); // start at center card
 // SECTION 3.2: Fan angle config
 // Cards spread like a hand — center is 0°, sides tilt outward
 function getFanAngle(position) {
-  // position: -2, -1, 0, 1, 2 relative to active
-  const maxAngle = 22; // degrees each step
+  // position: relative to active card (can range wider now with 7 cards)
+  const maxAngle = 16; // degrees each step — tighter spread for more cards
   return position * maxAngle;
 }
 
 function getFanX(position) {
   // horizontal spread per step in px
-  const spread = 72;
+  const spread = 56;
   return position * spread;
 }
 
@@ -170,10 +170,12 @@ const fanObserver = new IntersectionObserver((entries) => {
     }
   });
 }, {
-  threshold: 0.25, // trigger when 25% of section is visible
+  threshold: 0.6, // trigger only once the fan stage itself is well into view
 });
 
-fanObserver.observe(document.getElementById('work'));
+// Observe the fan stage directly (not the whole section) so the
+// animation fires right as the cards themselves come into view
+fanObserver.observe(fanStage);
 
 // SECTION 3.11: Initial render (positions set, overridden by stacked class)
 renderFan();
