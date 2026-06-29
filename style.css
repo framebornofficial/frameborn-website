@@ -174,6 +174,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   overflow: hidden;
   padding: 0 var(--pad-x);
   text-align: center;
+  box-sizing: border-box;
 }
 
 /* SECTION 3.2: Radial glow */
@@ -201,10 +202,12 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 /* SECTION 3.4: Headline */
 .hero-headline {
   font-family: var(--font-display);
-  font-size: clamp(4.5rem, 11vw, 10rem);
-  font-weight: 600; letter-spacing: 0.2em; line-height: 1;
+  font-size: clamp(2.6rem, 10vw, 9rem);
+  font-weight: 600; letter-spacing: 0.16em; line-height: 1;
   margin-bottom: 1.2rem;
   opacity: 0; animation: fadeUp 1s ease forwards 0.2s;
+  max-width: 100%;
+  white-space: nowrap;
 }
 
 /* SECTION 3.5: Tagline */
@@ -395,6 +398,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   width: 100%; height: 100%;
   background: var(--black-card);
   border: 1px solid var(--border);
+  border-radius: 16px;
   overflow: hidden;
   transition: border-color 0.4s ease;
 }
@@ -774,7 +778,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .lightbox-close span:last-child  { transform: rotate(-45deg); }
 .lightbox-close:hover span { background: var(--accent); }
 
-.lightbox-frame { position: relative; width: 100%; padding-top: 56.25%; background: #000; }
+.lightbox-frame { position: relative; width: 100%; padding-top: 56.25%; background: #000; border-radius: 12px; overflow: hidden; }
 .lightbox-content.portrait .lightbox-frame { padding-top: 177.78%; }
 .lightbox-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
 
@@ -795,6 +799,14 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 /* == BLOCK 12: RESPONSIVE                                       == */
 /* ================================================================ */
 
+/* SECTION 12.0: Large Screens / TV — cap headline so it never overflows */
+@media (min-width: 1600px) {
+  .hero-headline {
+    font-size: 8rem;
+    letter-spacing: 0.14em;
+  }
+}
+
 /* SECTION 12.1: Tablet */
 @media (max-width: 1024px) {
   :root { --pad-x: 3rem; --pad-section: 90px; }
@@ -806,6 +818,11 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 /* SECTION 12.2: Mobile */
 @media (max-width: 768px) {
   :root { --pad-x: 1.5rem; --pad-section: 70px; }
+
+  .hero-headline {
+    font-size: clamp(2.2rem, 13vw, 3.5rem);
+    letter-spacing: 0.08em;
+  }
 
   .navbar { grid-template-columns: auto auto 1fr; padding: 1.2rem var(--pad-x); }
   .nav-brand { display: none; }
@@ -837,4 +854,13 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
   .lightbox-content { width: 95vw; }
   .lightbox-content.portrait { max-width: 300px; }
+}
+
+
+/* SECTION 12.3: Small Mobile — extra safety for narrow phones */
+@media (max-width: 380px) {
+  .hero-headline {
+    font-size: clamp(1.8rem, 12vw, 2.6rem);
+    letter-spacing: 0.05em;
+  }
 }
